@@ -1,0 +1,374 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  EDITOR
+  VIEWER
+}
+
+enum Country {
+  GAMBIA
+  GUINEA_BISSAU
+  MAURITANIA
+  SENEGAL
+}
+
+enum ContentStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum ContentType {
+  NEWS
+  REPORT
+  DOCUMENT
+  EVENT
+  PAGE
+  HERO
+  ABOUT
+  COMPONENT
+  PARTNER
+}
+
+enum LayerType {
+  VECTOR
+  RASTER
+  POINT
+  POLYGON
+  LINE
+}
+
+enum TenderType {
+  SERVICE
+  SUPPLY
+  WORKS
+  CONSULTANCY
+}
+
+enum TenderStatus {
+  DRAFT
+  OPEN
+  CLOSED
+  AWARDED
+  CANCELLED
+}
+enum PublicationType {
+  REPORT
+  ADAPTATION
+  KNOWLEDGE
+  TRAINING
+  OTHER
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  username  String   @unique
+  password  String
+  firstName String
+  lastName  String
+  country   Country
+  role      Role     @default(VIEWER)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  lastLogin DateTime?
+  createdContents Content[] @relation("CreatedBy")
+  updatedContents Content[] @relation("UpdatedBy")
+  @@map("users")
+}
+
+model Content {
+  id          String        @id @default(uuid())
+  title       String
+  titleFr     String?
+  slug        String        @unique
+  excerpt     String?       @db.Text
+  excerptFr   String?       @db.Text
+  content     String        @db.Text
+  contentFr   String?       @db.Text
+  contentType ContentType
+  status      ContentStatus @default(DRAFT)
+  featuredImage String?
+  attachments   Attachment[]
+  metaTitle       String?
+  metaDescription String?
+  keywords        String[]
+  authorId   String?
+  author     User?    @relation("CreatedBy", fields: [authorId], references: [id])
+  updaterId  String?
+  updatedBy  User?  @relation("UpdatedBy", fields: [updaterId], references: [id])
+  category   Category? @relation(fields: [categoryId], references: [id])
+  categoryId String?
+  tags       Tag[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  publishedAt DateTime?
+  @@map("contents")
+}
+
+model Category {
+  id          String    @id @default(uuid())
+  name        String    @unique
+  nameFr      String?
+  slug        String    @unique
+  description String?
+  contents    Content[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@map("categories")
+}
+
+model Tag {
+  id       String    @id @default(uuid())
+  name     String    @unique
+  nameFr   String?
+  slug     String    @unique
+  contents Content[]
+  createdAt DateTime @default(now())
+  @@map("tags")
+}
+
+model Attachment {
+  id       String @id @default(uuid())
+  filename String
+  url      String
+  mimeType String
+  size     Int
+  content   Content @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  contentId String
+  createdAt DateTime @default(now())
+  @@map("attachments")
+}
+
+model SiteSetting {
+  id      String @id @default(uuid())
+  key     String @unique
+  value   String @db.Text
+  valueFr String?
+  updatedAt DateTime @updatedAt
+  @@map("site_settings")
+}
+
+model PageView {
+  id        String   @id @default(uuid())
+  page      String
+  referrer  String?
+  userAgent String?
+  ipAddress String?
+  country   String?
+  createdAt DateTime @default(now())
+  @@index([page])
+  @@index([createdAt])
+  @@map("page_views")
+}
+
+model Media {
+  id           String   @id @default(uuid())
+  filename    String
+  url         String
+  thumbnailUrl String?
+  mimeType    String
+  size        Int
+  alt         String?
+  altFr       String?
+  caption     String?
+  captionFr   String?
+  uploadedBy  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@map("medias")
+}
+
+model Partner {
+  id            String @id @default(uuid())
+  name          String
+  nameFr        String?
+  slug          String @unique
+  description   String? @db.Text
+  descriptionFr String? @db.Text
+  logo          String
+  website       String?
+  order         Int    @default(0)
+  isActive      Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@map("partners")
+}
+
+model CountryData {
+  id            String @id @default(uuid())
+  name          String
+  nameFr        String?
+  code          String @unique
+  flag          String?
+  description   String? @db.Text
+  descriptionFr String? @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@map("country_data")
+}
+
+// News/Events model — with attachments support
+model NewsItem {
+  id            String    @id @default(uuid())
+  title         String
+  titleFr       String?
+  slug          String    @unique
+  excerpt       String? @db.Text
+  excerptFr     String? @db.Text
+  content       String    @db.Text
+  contentFr     String? @db.Text
+  featuredImage String?
+  isPublished   Boolean   @default(false)
+  isEvent       Boolean   @default(false)
+  eventDate     DateTime?
+  // Attachments stored as JSON array: [{url, filename, mimeType, size}]
+  attachments   String?   @db.Text
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  publishedAt DateTime?
+  @@map("news_items")
+}
+
+// Publication model — for reports, documents, training materials, etc.
+model Publication {
+  id              String          @id @default(uuid())
+  title           String
+  titleFr         String?
+  slug            String          @unique
+  description     String?         @db.Text
+  descriptionFr   String?         @db.Text
+  publicationType PublicationType @default(REPORT)
+  isPublished     Boolean         @default(false)
+  coverImage      String?
+  // Files stored as JSON array: [{url, filename, mimeType, size, label, labelFr}]
+  files           String?         @db.Text
+  date            DateTime?
+  authors         String?
+  language        String?         @default("EN/FR")
+  order           Int             @default(0)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  publishedAt     DateTime?
+  @@map("publications")
+}
+
+model Statistic {
+  id       String  @id @default(uuid())
+  label    String
+  labelFr  String?
+  value    String
+  unit     String?
+  unitFr   String?
+  icon     String?
+  order    Int     @default(0)
+  isActive Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@map("statistics")
+}
+
+model Tender {
+  id             String       @id @default(uuid())
+  title          String
+  titleFr        String?
+  slug           String       @unique
+  description    String? @db.Text
+  descriptionFr  String? @db.Text
+  reference      String?
+  type           TenderType   @default(SERVICE)
+  status         TenderStatus @default(OPEN)
+  deadline       DateTime
+  openingDate    DateTime?
+  documentUrl    String?
+  contactName    String?
+  contactEmail   String?
+  contactPhone   String?
+  budget         Float?
+  currency       String?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  publishedAt DateTime?
+  @@map("tenders")
+}
+
+model MapLayer {
+  id              String     @id @default(uuid())
+  name            String
+  nameFr          String?
+  description     String? @db.Text
+  descriptionFr   String? @db.Text
+  slug            String     @unique
+  layerType       LayerType  @default(VECTOR)
+  color           String     @default("#3388ff")
+  fillColor       String?
+  fillOpacity     Float      @default(0.35)
+  opacity         Float      @default(0.8)
+  borderColor     String?
+  borderOpacity   Float      @default(1.0)
+  weight          Int        @default(2)
+  showLabels      Boolean    @default(false)
+  labelField      String?
+  labelFontSize   Int        @default(12)
+  categorize      Boolean    @default(false)
+  categorizeField String?
+  geoData         String     @db.Text
+  fileName        String?
+  fileSize        Int?
+  isVisible       Boolean    @default(true)
+  isDefault       Boolean    @default(false)
+  order           Int        @default(0)
+  minLat          Float?
+  maxLat          Float?
+  minLng          Float?
+  maxLng          Float?
+  source          String?
+  attribution     String?
+  points          MapPoint[]
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+  @@map("map_layers")
+}
+
+model MapPoint {
+  id              String    @id @default(uuid())
+  name            String
+  nameFr          String?
+  description     String? @db.Text
+  descriptionFr   String? @db.Text
+  latitude        Float
+  longitude       Float
+  icon            String?
+  color           String    @default("#ff5722")
+  size            Int       @default(10)
+  popupTitle      String?
+  popupContent    String? @db.Text
+  popupContentFr  String? @db.Text
+  category        String?
+  layerId         String?
+  layer           MapLayer? @relation(fields: [layerId], references: [id])
+  isActive        Boolean   @default(true)
+  order           Int       @default(0)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  @@map("map_points")
+}
+
+model MapSetting {
+  id          String  @id @default(uuid())
+  key         String  @unique
+  value       String  @db.Text
+  valueFr     String?
+  description String?
+  updatedAt   DateTime @updatedAt
+  @@map("map_settings")
+}

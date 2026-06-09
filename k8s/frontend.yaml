@@ -1,0 +1,72 @@
+# ── Deployment ──
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smas-frontend
+  namespace: smas
+  labels:
+    app: smas-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: smas-frontend
+  template:
+    metadata:
+      labels:
+        app: smas-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: mehdino123/back-smas:latest-main1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: smas-config
+            - secretRef:
+                name: smas-secrets
+          env:
+            # Server-side needs direct backend URL for API proxy routes
+            - name: BACKEND_URL
+              value: "http://smas-backend:3001"
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 15
+            periodSeconds: 15
+            timeoutSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            timeoutSeconds: 5
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "200m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+
+---
+# ── Service ──
+apiVersion: v1
+kind: Service
+metadata:
+  name: smas-frontend
+  namespace: smas
+  labels:
+    app: smas-frontend
+spec:
+  type: ClusterIP
+  selector:
+    app: smas-frontend
+  ports:
+    - port: 3000
+      targetPort: 3000
+      protocol: TCP

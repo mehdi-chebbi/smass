@@ -1,0 +1,95 @@
+# ── PVC for uploaded files (persists across pod restarts) ──
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: smas-uploads
+  namespace: smas
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+
+---
+# ── Deployment ──
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smas-backend
+  namespace: smas
+  labels:
+    app: smas-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: smas-backend
+  template:
+    metadata:
+      labels:
+        app: smas-backend
+    spec:
+      containers:
+        - name: backend
+          image: smas-backend:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3001
+          envFrom:
+            - configMapRef:
+                name: smas-config
+            - secretRef:
+                name: smas-secrets
+          env:
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: smas-config
+                  key: BACKEND_PORT
+          volumeMounts:
+            - name: uploads
+              mountPath: /app/uploads
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 3001
+            initialDelaySeconds: 10
+            periodSeconds: 15
+            timeoutSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: 3001
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            timeoutSeconds: 5
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "200m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+      volumes:
+        - name: uploads
+          persistentVolumeClaim:
+            claimName: smas-uploads
+
+---
+# ── Service ──
+apiVersion: v1
+kind: Service
+metadata:
+  name: smas-backend
+  namespace: smas
+  labels:
+    app: smas-backend
+spec:
+  type: ClusterIP
+  selector:
+    app: smas-backend
+  ports:
+    - port: 3001
+      targetPort: 3001
+      protocol: TCP

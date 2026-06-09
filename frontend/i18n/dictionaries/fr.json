@@ -1,0 +1,629 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "map": "Carte",
+    "about": {
+      "label": "À Propos du Projet",
+      "team": "Notre Équipe",
+      "history": "Histoire du Projet"
+    },
+    "smas": {
+      "label": "SMAS",
+      "component1": "Composante 1",
+      "component2": "Composante 2",
+      "component3": "Composante 3",
+      "component4": "Composante 4"
+    },
+    "news": {
+      "label": "Actualités",
+      "news": "Actualités",
+      "events": "Événements"
+    },
+    "publications": {
+      "label": "Documentation",
+      "reports": "Rapports d'activités",
+      "adaptation": "BP d'adaptation",
+      "knowledge": "Connaissance SMAS",
+      "training": "Modules de formation"
+    },
+    "work": {
+      "label": "Opportunités",
+      "tenders": "Appels d'offres"
+    },
+    "water": {
+      "label": "Pays",
+      "gambia": "Gambie",
+      "guineaBissau": "Guinée-Bissau",
+      "mauritania": "Mauritanie",
+      "senegal": "Sénégal"
+    },
+    "data": {
+      "label": "Données",
+      "maps": "Cartes",
+      "statistics": "Statistiques",
+      "reports": "Rapports"
+    },
+    "contact": "Contact",
+    "language": "Langue",
+    "partners": {
+      "label": "Nos Partenaires",
+      "oss": "OSS — Observatoire du Sahara et du Sahel",
+      "omvs": "OMVS — Fleuve Sénégal",
+      "omvg": "OMVG — Fleuve Gambie",
+      "gef": "FEM — Fonds pour l'Environnement Mondial",
+      "unep": "PNUE — Programme des Nations Unies pour l'Environnement"
+    },
+    "components": {
+      "label": "Composantes du Projet"
+    },
+    "news_label": "Actualités & Événements"
+  },
+  "hero": {
+    "badge": "Gestion Régionale des Ressources en Eau",
+    "title": "Améliorer la Gestion Durable du",
+    "titleHighlight": "Système Aquifère Sénégalo-Mauritanien",
+    "subtitle": "Favoriser la coopération entre les pays et renforcer la capacité institutionnelle pour la protection et la gestion durable du système aquifère transfrontalier Sénégalo-Mauritanien et de ses écosystèmes dépendants afin d'améliorer la sécurité de l'eau et de la nourriture et la résilience au changement climatique.",
+    "learnMore": "En Savoir Plus",
+    "accessData": "Accéder aux Données",
+    "scroll": "Défiler",
+    "partners": "Partenaires",
+    "implementedBy": "Mis en œuvre par"
+  },
+  "home": {
+    "highlights": {
+      "title": "À la Une",
+      "subtitle": "Dernières actualités et étapes clés du projet SMAS"
+    },
+    "about": {
+      "title": "Le SMAS",
+      "subtitle": "Le Projet du Système Aquifère Sénégalo-Mauritanien"
+    },
+    "partners": {
+      "title": "Nos Partenaires",
+      "subtitle": "Travailler ensemble pour une gestion durable de l'eau"
+    }
+  },
+  "about": {
+    "label": "À Propos du Projet",
+    "title": "Le Projet SMAS pour une",
+    "titleHighlight": "Gestion Durable et Coopérative",
+    "titleEnd": "de l'Eau",
+    "description1": "Le système aquifère Sénégalo-Mauritanien est une ressource vitale pour l'approvisionnement en eau des populations des pays concernés. Il soutient l'agriculture, l'élevage, et les écosystèmes locaux, tout en jouant un rôle crucial dans la résilience des communautés face aux variations climatiques.",
+    "description2": "Cependant, il est soumis à des pressions croissantes dues à la surexploitation, à la pollution et aux impacts du changement climatique. Ce projet vise à répondre à ces défis en mettant en place une gestion intégrée et durable de cette précieuse ressource.",
+    "countries": "Pays",
+    "area": "km² de Surface",
+    "years": "Années (2024-2027)",
+    "exploreComponents": "Explorer les Composantes",
+    "groundwaterManagement": "Gestion des Eaux Souterraines Transfrontalières",
+    "groundwaterDescription": "Surveillance et protection coordonnées des ressources aquifères partagées entre 4 nations.",
+    "features": {
+      "waterSecurity": {
+        "title": "Sécurité de l'Eau",
+        "description": "Garantir un accès durable aux ressources en eaux souterraines"
+      },
+      "regionalCooperation": {
+        "title": "Coopération Régionale",
+        "description": "Favoriser la collaboration entre quatre nations"
+      },
+      "transboundary": {
+        "title": "Gestion Transfrontalière",
+        "description": "Approche intégrée des systèmes aquifères partagés"
+      },
+      "climateResilience": {
+        "title": "Résilience Climatique",
+        "description": "Renforcer la capacité d'adaptation aux défis futurs"
+      }
+    }
+  },
+  "components": {
+    "label": "Composantes du Projet",
+    "title": "Les Quatre",
+    "titleHighlight": "Composantes Clés",
+    "subtitle": "Une approche complète de la gestion du Système Aquifère Sénégalo-Mauritanien à travers la connaissance, la gouvernance, l'adaptation et le renforcement des capacités.",
+    "learnMore": "En Savoir Plus",
+    "component1": {
+      "title": "Composante 1 : Amélioration de la Compréhension du Système Aquifère",
+      "shortTitle": "Compréhension du Système Aquifère",
+      "description": "Améliorer la compréhension partagée du système aquifère Sénégalo-Mauritanien à travers des études détaillées et l'harmonisation des outils de gestion des eaux souterraines. Elle comprend l'évaluation et le diagnostic régional du système aquifère pour identifier les défis et les opportunités liés à sa gestion durable.",
+      "features": [
+        "Études Hydrogéologiques",
+        "Collecte et Analyse de Données",
+        "Systèmes de Surveillance",
+        "Interactions Fleuve-Aquifère"
+      ],
+      "0": "Études Hydrogéologiques",
+      "1": "Collecte et Analyse de Données",
+      "2": "Systèmes de Surveillance",
+      "3": "Interactions Fleuve-Aquifère"
+    },
+    "component2": {
+      "title": "Composante 2 : Développement d'un Programme Stratégique d'Action Régionale (PSAR)",
+      "shortTitle": "Programme Stratégique d'Action Régionale",
+      "description": "Élaborer et approuver un PSAR pour la gestion durable des ressources en eau du SMAS. Le PSAR comprendra des stratégies et des mesures pour une gestion intégrée des ressources en eau de surface et souterraines, tout en tenant compte des impacts du changement climatique.",
+      "features": [
+        "Développement de Politiques",
+        "Cadre Transfrontalier",
+        "Mécanismes de Gouvernance",
+        "Plans de Gestion Conjointe"
+      ],
+      "0": "Développement de Politiques",
+      "1": "Cadre Transfrontalier",
+      "2": "Mécanismes de Gouvernance",
+      "3": "Plans de Gestion Conjointe"
+    },
+    "component3": {
+      "title": "Composante 3 : Mise en Œuvre de Mesures d'Adaptation Basées sur les Eaux Souterraines",
+      "shortTitle": "Mesures d'Adaptation",
+      "description": "Mise en œuvre de mesures pilotes à petite échelle pour démontrer l'efficacité de l'utilisation améliorée des ressources en eau. Ces mesures viseront à accroître l'efficacité de l'utilisation de l'eau dans l'agriculture et à élargir la disponibilité des ressources en eau à travers des interventions locales adaptées.",
+      "features": [
+        "Solutions d'Adaptation",
+        "Résilience Climatique",
+        "Projets Pilotes",
+        "Atténuation des Risques"
+      ],
+      "0": "Solutions d'Adaptation",
+      "1": "Résilience Climatique",
+      "2": "Projets Pilotes",
+      "3": "Atténuation des Risques"
+    },
+    "component4": {
+      "title": "Composante 4 : Renforcement des Capacités, Communication et Gestion des Connaissances",
+      "shortTitle": "Renforcement des Capacités",
+      "description": "Renforcer les capacités institutionnelles et humaines pour la gestion du SMAS. Inclut le développement d'une plateforme d'échange d'informations et de données régionales, des modules de formation, et des stratégies de communication pour diffuser les résultats du projet et accroître sa visibilité.",
+      "features": [
+        "Programmes de Formation",
+        "Partage de Connaissances",
+        "Stratégie de Communication",
+        "Plateforme Régionale"
+      ],
+      "0": "Programmes de Formation",
+      "1": "Partage de Connaissances",
+      "2": "Stratégie de Communication",
+      "3": "Plateforme Régionale"
+    },
+    "knowledge": {
+      "title": "Composante 1 : Connaissance de l'Aquifère",
+      "description": "Améliorer la compréhension du fonctionnement du Système Aquifère Sénégalo-Mauritanien et de ses interactions avec les eaux de surface.",
+      "features": [
+        "Études Hydrogéologiques",
+        "Collecte et Analyse de Données",
+        "Systèmes de Surveillance",
+        "Interactions Fleuve-Aquifère"
+      ]
+    },
+    "governance": {
+      "title": "Composante 2 : Gouvernance Régionale",
+      "description": "Développer un Programme d'Action Stratégique (PAS) régional et faciliter la gestion conjointe des eaux de surface et souterraines.",
+      "features": [
+        "Développement de Politiques",
+        "Cadre Transfrontalier",
+        "Mécanismes de Gouvernance",
+        "Plans de Gestion Conjointe"
+      ]
+    },
+    "capacity": {
+      "title": "Composantes 3 & 4 : Renforcement des Capacités",
+      "description": "Piloter les solutions d'adaptation aux eaux souterraines et renforcer les capacités par la formation, la communication et la gestion des connaissances.",
+      "features": [
+        "Solutions d'Adaptation",
+        "Programmes de Formation",
+        "Partage de Connaissances",
+        "Stratégie de Communication"
+      ]
+    }
+  },
+  "news": {
+    "label": "Actualités & Événements",
+    "title": "Dernières",
+    "titleHighlight": "Actualités & Événements",
+    "subtitle": "Restez informé des dernières activités et événements du projet SMAS.",
+    "readMore": "Lire la Suite",
+    "viewAll": "Voir Toutes les Actualités",
+    "noNews": "Aucune actualité disponible pour le moment.",
+    "newsTab": "Actualités",
+    "eventsTab": "Événements",
+    "events": "Événements"
+  },
+  "events": {
+    "title": "Événements",
+    "upcoming": "Événements à Venir",
+    "past": "Événements Passés",
+    "viewDetails": "Voir les Détails",
+    "register": "S'inscrire"
+  },
+  "publications": {
+    "label": "Publications et Documents",
+    "title": "Publications et Documents",
+    "subtitle": "Accédez aux rapports techniques, modules de formation et ressources documentaires.",
+    "reports": {
+      "title": "Rapports d'activités",
+      "description": "Rapports annuels et d'avancement sur les activités du projet"
+    },
+    "adaptation": {
+      "title": "Plans d'Adaptation",
+      "description": "Solutions et stratégies d'adaptation basées sur les eaux souterraines"
+    },
+    "knowledge": {
+      "title": "Connaissance SMAS",
+      "description": "Publications scientifiques et documentation technique"
+    },
+    "training": {
+      "title": "Modules de Formation",
+      "description": "Ressources de renforcement des capacités et matériels de formation"
+    },
+    "download": "Télécharger",
+    "category": "Catégorie",
+    "date": "Date",
+    "size": "Taille"
+  },
+  "data": {
+    "label": "Données & Ressources",
+    "title": "Explorer les Données",
+    "titleHighlight": "SMAS & Cartes",
+    "subtitle": "Accédez aux cartes interactives, aux statistiques clés et aux rapports techniques du réseau de surveillance du Système Aquifère Sénégalo-Mauritanien.",
+    "viewMap": "Voir la Carte",
+    "downloadReport": "Télécharger",
+    "statistics": "Statistiques Clés",
+    "statistics_title": "Statistiques Clés"
+  },
+  "work": {
+    "label": "Travailler avec nous",
+    "title": "Travailler avec nous",
+    "subtitle": "Opportunités de collaboration pour une gestion durable de l'eau.",
+    "tenders": {
+      "title": "Appels d'offres",
+      "description": "Opportunités de marchés et appels à propositions en cours.",
+      "deadline": "Date limite",
+      "status": "Statut",
+      "open": "Ouvert",
+      "closed": "Clôturé"
+    }
+  },
+  "water": {
+    "label": "Gérer l'eau du SMAS",
+    "title": "Gérer l'eau du SMAS",
+    "subtitle": "Activités de gestion de l'eau par pays dans le Système Aquifère Sénégalo-Mauritanien.",
+    "countries": {
+      "gambia": {
+        "name": "La Gambie",
+        "description": "Activités de gestion des ressources en eau dans la partie gambienne du SMAS."
+      },
+      "guineaBissau": {
+        "name": "La Guinée-Bissau",
+        "description": "Activités de gestion des ressources en eau dans la partie guinéenne du SMAS."
+      },
+      "mauritania": {
+        "name": "La Mauritanie",
+        "description": "Activités de gestion des ressources en eau dans la partie mauritanienne du SMAS."
+      },
+      "senegal": {
+        "name": "Le Sénégal",
+        "description": "Activités de gestion des ressources en eau dans la partie sénégalaise du SMAS."
+      }
+    },
+    "statistics": {
+      "title": "Statistiques Clés",
+      "aquiferDepth": "Profondeur de l'Aquifère",
+      "annualRecharge": "Recharge Annuelle",
+      "abstraction": "Prélèvement Actuel",
+      "population": "Population Desservie"
+    }
+  },
+  "partners": {
+    "label": "Nos Partenaires",
+    "title": "Travailler Ensemble pour une",
+    "titleHighlight": "Gestion Durable de l'Eau",
+    "subtitle": "Le projet SMAS est mis en œuvre grâce à de solides partenariats avec des organisations régionales et internationales.",
+    "countries": "Pays Bénéficiaires",
+    "organizations": "Organisations Partenaires",
+    "oss": {
+      "name": "OSS",
+      "fullName": "Observatoire du Sahara et du Sahel",
+      "description": "L'agence d'exécution coordonnant le projet SMAS."
+    },
+    "omvs": {
+      "name": "OMVS",
+      "fullName": "Organisation pour la Mise en Valeur du fleuve Sénégal",
+      "description": "Soutenant les efforts de gestion transfrontalière de l'eau."
+    },
+    "omvg": {
+      "name": "OMVG",
+      "fullName": "Organisation pour la Mise en Valeur du fleuve Gambie",
+      "description": "Soutenant la gestion intégrée des ressources en eau."
+    },
+    "gef": {
+      "name": "FEM",
+      "fullName": "Fonds pour l'Environnement Mondial",
+      "description": "Le principal partenaire financier du projet SMAS."
+    },
+    "unep": {
+      "name": "PNUE",
+      "fullName": "Programme des Nations Unies pour l'Environnement",
+      "description": "Fournissant une orientation technique et une coordination internationale."
+    }
+  },
+  "footer": {
+    "description": "Renforcement de la Gestion Durable du Système Aquifère Sénégalo-Mauritanien",
+    "quickLinks": "Liens Rapides",
+    "contact": "Contact",
+    "followUs": "Suivez-nous",
+    "copyright": "© 2024-2027 Projet SMAS. Tous droits réservés.",
+    "privacy": "Politique de Confidentialité",
+    "terms": "Conditions d'Utilisation"
+  },
+  "admin": {
+    "title": "Tableau de Bord Admin",
+    "dashboard": "Tableau de Bord",
+    "contents": "Contenus",
+    "news": "Actualités & Événements",
+    "publications": "Publications",
+    "tenders": "Appels d'offres",
+    "settings": "Paramètres",
+    "addContent": "Ajouter du Contenu",
+    "editContent": "Modifier le Contenu",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "confirmDelete": "Êtes-vous sûr de vouloir supprimer cet élément?",
+    "back": "Retour"
+  },
+  "common": {
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "all": "Tout",
+    "none": "Aucun",
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "success": "Opération réussie",
+    "published": "Publié",
+    "draft": "Brouillon",
+    "archived": "Archivé",
+    "learnMore": "En Savoir Plus"
+  },
+  "map": {
+    "title": "Carte Interactive",
+    "subtitle": "Explorer le Système Aquifère Sénégalo-Mauritanien",
+    "layers": "Couches",
+    "points": "Points",
+    "about": "À Propos",
+    "showLayers": "Afficher les Couches",
+    "hideLayers": "Masquer les Couches",
+    "noLayers": "Aucune couche disponible",
+    "noPoints": "Aucun point disponible",
+    "zoomIn": "Zoomer",
+    "zoomOut": "Dézoomer",
+    "resetView": "Réinitialiser la Vue",
+    "search": "Rechercher un lieu...",
+    "layerInfo": "Information sur la Couche",
+    "pointInfo": "Information sur le Point",
+    "visibility": "Visibilité",
+    "addLayer": "Ajouter une Couche",
+    "editLayer": "Modifier la Couche",
+    "deleteLayer": "Supprimer la Couche",
+    "layerName": "Nom de la Couche",
+    "layerType": "Type de Couche",
+    "color": "Couleur",
+    "opacity": "Opacité",
+    "description": "Description",
+    "source": "Source",
+    "attribution": "Attribution",
+    "defaultView": "Vue par Défaut",
+    "countries": {
+      "gambia": "Gambie",
+      "guineaBissau": "Guinée-Bissau",
+      "mauritania": "Mauritanie",
+      "senegal": "Sénégal"
+    },
+    "categories": {
+      "monitoring": "Stations de Surveillance",
+      "wells": "Puits",
+      "aquifer": "Zones Aquifères",
+      "rivers": "Fleuves",
+      "cities": "Villes"
+    }
+  },
+  "pages": {
+    "about": {
+      "title": "À Propos du Projet",
+      "subtitle": "Le Projet du Système Aquifère Sénégalo-Mauritanien"
+    },
+    "team": {
+      "title": "Notre Équipe",
+      "subtitle": "Les personnes qui font avancer le projet SMAS"
+    },
+    "history": {
+      "title": "Histoire du Projet",
+      "subtitle": "Les étapes clés dans le développement du projet SMAS"
+    },
+    "partners": {
+      "title": "Nos Partenaires",
+      "subtitle": "Travailler ensemble pour une gestion durable de l'eau"
+    },
+    "component1": {
+      "introduction": {
+        "title": "Amélioration de la Compréhension du Système Aquifère",
+        "content": "Cette composante vise à améliorer la compréhension partagée du système aquifère Sénégalo-Mauritanien à travers des études détaillées et l'harmonisation des outils de gestion des eaux souterraines. Elle comprend l'évaluation et le diagnostic régional du système aquifère pour identifier les défis et les opportunités liés à sa gestion durable."
+      },
+      "activities": {
+        "title": "Activités Principales",
+        "dataCollection": {
+          "title": "Collecte et Analyse de Données",
+          "description": "Rassembler et analyser les données hydrogéologiques des quatre pays pour construire une compréhension globale du système aquifère."
+        },
+        "monitoring": {
+          "title": "Systèmes de Surveillance",
+          "description": "Établir et maintenir des réseaux de surveillance pour suivre les niveaux des eaux souterraines, la qualité et les taux d'extraction en temps réel."
+        },
+        "interactions": {
+          "title": "Interactions Fleuve-Aquifère",
+          "description": "Étudier les relations complexes entre les eaux de surface des fleuves Sénégal et Gambie et le système aquifère sous-jacent."
+        },
+        "mapping": {
+          "title": "Cartographie Géologique",
+          "description": "Créer des cartes géologiques et hydrogéologiques détaillées pour soutenir l'évaluation des ressources et la planification de la gestion."
+        }
+      },
+      "objectives": {
+        "title": "Objectifs Stratégiques",
+        "aquifer": "Caractérisation et évaluation complète de l'aquifère",
+        "database": "Base de données régionale intégrée des eaux souterraines",
+        "assessment": "Évaluation des ressources en eau transfrontalières"
+      },
+      "features": {
+        "title": "Domaines d'Intervention"
+      }
+    },
+    "component2": {
+      "introduction": {
+        "title": "Programme Stratégique d'Action Régionale (PSAR)",
+        "content": "Le but de cette composante est d'élaborer et d'approuver un PSAR pour la gestion durable des ressources en eau du SMAS. Le PSAR comprendra des stratégies et des mesures pour une gestion intégrée des ressources en eau de surface et souterraines, tout en tenant compte des impacts du changement climatique."
+      },
+      "activities": {
+        "title": "Activités Principales",
+        "policy": {
+          "title": "Développement de Politiques",
+          "description": "Développer des politiques et réglementations harmonisées pour la gestion des eaux souterraines dans les quatre pays."
+        },
+        "framework": {
+          "title": "Cadre Transfrontalier",
+          "description": "Créer des cadres juridiques et institutionnels pour soutenir la gestion coopérative des ressources en eau partagées."
+        },
+        "governance": {
+          "title": "Mécanismes de Gouvernance",
+          "description": "Établir des structures de gouvernance et des mécanismes de coordination pour une gestion efficace de l'eau transfrontalière."
+        },
+        "planning": {
+          "title": "Planification Conjointe",
+          "description": "Développer des plans de gestion conjoints et des programmes d'action stratégique pour l'utilisation durable de l'aquifère."
+        }
+      },
+      "objectives": {
+        "title": "Objectifs Stratégiques",
+        "sap": "Développement du Programme d'Action Stratégique régional",
+        "integration": "Intégration de la gestion des eaux de surface et souterraines",
+        "cooperation": "Coopération institutionnelle transfrontalière"
+      },
+      "features": {
+        "title": "Domaines d'Intervention"
+      }
+    },
+    "component3": {
+      "introduction": {
+        "title": "Mesures d'Adaptation Basées sur les Eaux Souterraines",
+        "content": "Cette composante se concentre sur la mise en œuvre de mesures pilotes à petite échelle pour démontrer l'efficacité de l'utilisation améliorée des ressources en eau. Ces mesures viseront à accroître l'efficacité de l'utilisation de l'eau dans l'agriculture et à élargir la disponibilité des ressources en eau à travers des interventions locales adaptées."
+      },
+      "activities": {
+        "title": "Activités Principales",
+        "solutions": {
+          "title": "Solutions d'Adaptation",
+          "description": "Concevoir et mettre en œuvre des solutions basées sur les eaux souterraines pour renforcer la résilience climatique dans les zones vulnérables."
+        },
+        "pilots": {
+          "title": "Projets Pilotes",
+          "description": "Lancer des projets de démonstration pour tester et valider les approches d'adaptation dans des conditions réelles."
+        },
+        "resilience": {
+          "title": "Renforcement de la Résilience",
+          "description": "Renforcer la résilience des communautés et des écosystèmes par des interventions ciblées et un soutien aux capacités."
+        },
+        "mitigation": {
+          "title": "Atténuation des Risques",
+          "description": "Identifier et traiter les risques liés au climat pour les ressources en eau et les communautés dépendantes."
+        }
+      },
+      "objectives": {
+        "title": "Objectifs Stratégiques",
+        "groundwater": "Utilisation durable des eaux souterraines pour l'adaptation",
+        "pilots": "Mise en œuvre de projets pilotes communautaires",
+        "adaptation": "Pratiques de gestion de l'eau adaptées au climat"
+      },
+      "features": {
+        "title": "Domaines d'Intervention"
+      }
+    },
+    "component4": {
+      "introduction": {
+        "title": "Renforcement des Capacités, Communication et Gestion des Connaissances",
+        "content": "Cette composante vise à renforcer les capacités institutionnelles et humaines pour la gestion du SMAS. Elle inclut le développement d'une plateforme d'échange d'informations et de données régionales, des modules de formation, et des stratégies de communication pour diffuser les résultats du projet et accroître sa visibilité."
+      },
+      "activities": {
+        "title": "Activités Principales",
+        "training": {
+          "title": "Programmes de Formation",
+          "description": "Développer et dispenser des formations spécialisées pour les professionnels de l'eau et les décideurs de la région."
+        },
+        "knowledge": {
+          "title": "Partage de Connaissances",
+          "description": "Créer des plateformes et des mécanismes pour partager les meilleures pratiques, les données et les leçons apprises entre les parties prenantes."
+        },
+        "communication": {
+          "title": "Stratégie de Communication",
+          "description": "Mettre en œuvre des stratégies de communication pour sensibiliser et promouvoir les pratiques de gestion durable de l'eau."
+        },
+        "platform": {
+          "title": "Plateforme Régionale",
+          "description": "Établir une plateforme régionale de gestion des connaissances pour l'information sur le système aquifère et la collaboration."
+        }
+      },
+      "objectives": {
+        "title": "Objectifs Stratégiques",
+        "capacity": "Capacité technique et institutionnelle renforcée",
+        "network": "Réseau régional de partage de connaissances",
+        "innovation": "Adoption de l'innovation et des meilleures pratiques"
+      },
+      "features": {
+        "title": "Domaines d'Intervention"
+      }
+    },
+    "knowledge": {
+      "title": "Composante 1 : Connaissance de l'Aquifère",
+      "subtitle": "Améliorer la compréhension du Système Aquifère Sénégalo-Mauritanien"
+    },
+    "governance": {
+      "title": "Composante 2 : Gouvernance Régionale",
+      "subtitle": "Développement du Programme d'Action Stratégique régional"
+    },
+    "capacity": {
+      "title": "Composantes 3 & 4 : Adaptation & Capacités",
+      "subtitle": "Solutions d'adaptation climatique et renforcement des capacités"
+    },
+    "maps": {
+      "title": "Cartes Interactives",
+      "subtitle": "Explorez les données de l'aquifère via des couches cartographiques interactives"
+    },
+    "reports": {
+      "title": "Rapports Techniques",
+      "subtitle": "Accédez à la documentation et aux résultats de recherche du projet SMAS"
+    }
+  },
+  "workWithUs": {
+    "tenders": "Appels d'offres",
+    "subtitle": "Opportunités de marchés et appels à propositions en cours"
+  },
+  "impact": {
+    "title": "Impact Prévu et Bénéficiaires",
+    "subtitle": "Le projet SMAS (2024-2027) vise des résultats concrets pour les populations et les écosystèmes des quatre pays",
+    "indicators": {
+      "title": "Indicateurs Clés",
+      "protectedAreas": "Zones terrestres protégées sous gestion améliorée : 16 000 hectares",
+      "restoredLand": "Surface de terres restaurées : 4 636,7 hectares",
+      "improvedLandscapes": "Surface de paysages sous pratiques améliorées : 61 213 hectares",
+      "aquaticEcosystems": "Écosystèmes aquatiques partagés sous gestion coopérative améliorée : 1",
+      "directBeneficiaries": "Bénéficiaires directs : 163 241 (Hommes : 79 988, Femmes : 83 253)"
+    },
+    "outcomes": {
+      "title": "Impact",
+      "waterSecurity": "Sécurité accrue de l'eau dans les écosystèmes d'eau douce.",
+      "regionalCooperation": "Coopération régionale et nationale renforcée sur les ressources en eau partagées.",
+      "climateResilience": "Résilience améliorée au changement climatique pour les populations dépendantes du SMAS."
+    },
+    "beneficiaries": {
+      "title": "Bénéficiaires",
+      "description": "Le projet vise à bénéficier directement aux populations dans les zones pilotes à travers des pratiques de gestion de l'eau améliorées, le renforcement des capacités et la coopération accrue entre les pays participants."
+    },
+    "gender": {
+      "title": "Prise en Compte du Genre",
+      "description": "Le projet accorde une attention particulière à la dimension genre en intégrant des actions spécifiques pour promouvoir l'égalité entre les sexes et l'autonomisation des femmes. Les femmes, souvent les plus touchées par la pénurie d'eau et les impacts du changement climatique, bénéficieront de formations et de programmes de renforcement des capacités pour jouer un rôle actif dans la gestion des ressources en eau."
+    }
+  }
+}

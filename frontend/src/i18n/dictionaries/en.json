@@ -1,0 +1,613 @@
+{
+  "nav": {
+    "home": "Home",
+    "map": "Map",
+    "about": {
+      "label": "About the Project",
+      "team": "Our Team",
+      "history": "Project History"
+    },
+    "smas": {
+      "label": "SMAS",
+      "component1": "Component 1",
+      "component2": "Component 2",
+      "component3": "Component 3",
+      "component4": "Component 4"
+    },
+    "news": {
+      "label": "News",
+      "news": "News",
+      "events": "Events"
+    },
+    "publications": {
+      "label": "Documentation",
+      "reports": "Activity Reports",
+      "adaptation": "Adaptation BP",
+      "knowledge": "SMAS Knowledge",
+      "training": "Training Modules"
+    },
+    "work": {
+      "label": "Opportunity",
+      "tenders": "Calls for Tenders"
+    },
+    "water": {
+      "label": "Country",
+      "gambia": "Gambia",
+      "guineaBissau": "Guinea-Bissau",
+      "mauritania": "Mauritania",
+      "senegal": "Senegal"
+    },
+    "data": {
+      "label": "Data",
+      "maps": "Maps",
+      "statistics": "Statistics",
+      "reports": "Reports"
+    },
+    "contact": "Contact",
+    "language": "Language",
+    "partners": {
+      "label": "Our Partners",
+      "oss": "OSS — Observatory of the Sahara and the Sahel",
+      "omvs": "OMVS — Senegal River",
+      "omvg": "OMVG — Gambia River",
+      "gef": "GEF — Global Environment Facility",
+      "unep": "UNEP — United Nations Environment Programme"
+    },
+    "components": {
+      "label": "Project Components"
+    },
+    "news_label": "News & Events"
+  },
+  "hero": {
+    "badge": "Regional Water Resources Management",
+    "title": "Improving the Sustainable Management of the",
+    "titleHighlight": "Senegalo-Mauritanian Aquifer System",
+    "subtitle": "Promoting cooperation between countries and strengthening institutional capacity for the protection and sustainable management of the transboundary Senegalo-Mauritanian aquifer system and its dependent ecosystems to improve water and food security and climate change resilience.",
+    "learnMore": "Learn More",
+    "accessData": "Access Data",
+    "scroll": "Scroll",
+    "partners": "Partners",
+    "implementedBy": "Implemented by"
+  },
+  "home": {
+    "highlights": {
+      "title": "Highlights",
+      "subtitle": "Latest news and key milestones from the SMAS project"
+    },
+    "about": {
+      "title": "About SMAS",
+      "subtitle": "The Senegal-Mauritanian Aquifer System Project"
+    },
+    "partners": {
+      "title": "Our Partners",
+      "subtitle": "Working together for sustainable water management"
+    }
+  },
+  "about": {
+    "label": "About the Project",
+    "title": "The SMAS Project for",
+    "titleHighlight": "Sustainable & Cooperative",
+    "titleEnd": "Water Management",
+    "description1": "The Senegalo-Mauritanian Aquifer System is a vital resource for water supply to the populations of the countries concerned. It supports agriculture, livestock, and local ecosystems, while playing a crucial role in communities' resilience to climate variations.",
+    "description2": "However, it is under increasing pressure from overexploitation, pollution and the impacts of climate change. This project aims to address these challenges by establishing integrated and sustainable management of this precious resource.",
+    "countries": "Countries",
+    "area": "km² Area",
+    "years": "Years",
+    "exploreComponents": "Explore Project Components",
+    "groundwaterManagement": "Transboundary Groundwater Management",
+    "groundwaterDescription": "Coordinated monitoring and protection of shared aquifer resources across 4 nations.",
+    "features": {
+      "waterSecurity": {
+        "title": "Water Security",
+        "description": "Ensuring sustainable access to groundwater resources"
+      },
+      "regionalCooperation": {
+        "title": "Regional Cooperation",
+        "description": "Fostering collaboration among four nations"
+      },
+      "transboundary": {
+        "title": "Transboundary Management",
+        "description": "Integrated approach to shared aquifer systems"
+      },
+      "climateResilience": {
+        "title": "Climate Resilience",
+        "description": "Building adaptive capacity for future challenges"
+      }
+    }
+  },
+  "components": {
+    "label": "Project Components",
+    "title": "Four Key",
+    "titleHighlight": "Project Components",
+    "subtitle": "A comprehensive approach to managing the Senegal-Mauritanian Aquifer System through knowledge, governance, adaptation, and capacity building.",
+    "learnMore": "Learn More",
+    "component1": {
+      "title": "Component 1: Improving Understanding of the Aquifer System",
+      "shortTitle": "Aquifer System Understanding",
+      "description": "Improve the shared understanding of the Senegalo-Mauritanian aquifer system through detailed studies and harmonization of groundwater management tools. It includes regional evaluation and diagnosis of the aquifer system to identify challenges and opportunities related to its sustainable management.",
+      "features": [
+        "Hydrogeological Studies",
+        "Data Collection & Analysis",
+        "Monitoring Systems",
+        "River-Aquifer Interactions"
+      ]
+    },
+    "component2": {
+      "title": "Component 2: Development of a Regional Strategic Action Programme (RSAP)",
+      "shortTitle": "Regional Strategic Action Programme",
+      "description": "Develop and approve an RSAP for the sustainable management of SMAS water resources. The RSAP will include strategies and measures for integrated management of surface and groundwater resources, while taking into account the impacts of climate change.",
+      "features": [
+        "Policy Development",
+        "Transboundary Framework",
+        "Governance Mechanisms",
+        "Joint Management Plans"
+      ]
+    },
+    "component3": {
+      "title": "Component 3: Implementation of Groundwater-Based Adaptation Measures",
+      "shortTitle": "Adaptation Measures",
+      "description": "Implementation of small-scale pilot measures to demonstrate the effectiveness of improved water resource use. These measures will aim to increase water use efficiency in agriculture and expand water resource availability through adapted local interventions.",
+      "features": [
+        "Adaptation Solutions",
+        "Climate Resilience",
+        "Pilot Projects",
+        "Risk Mitigation"
+      ]
+    },
+    "component4": {
+      "title": "Component 4: Capacity Building, Communication and Knowledge Management",
+      "shortTitle": "Capacity Building",
+      "description": "Strengthen institutional and human capacities for SMAS management. Includes the development of a regional information and data exchange platform, training modules, and communication strategies to disseminate project results and increase its visibility.",
+      "features": [
+        "Training Programs",
+        "Knowledge Sharing",
+        "Communication Strategy",
+        "Regional Platform"
+      ]
+    },
+    "knowledge": {
+      "title": "Component 1: Aquifer Knowledge",
+      "description": "Improving understanding of the state and functioning of the Senegal-Mauritanian Aquifer System and its interactions with surface waters.",
+      "features": [
+        "Hydrogeological Studies",
+        "Data Collection & Analysis",
+        "Monitoring Systems",
+        "River-Aquifer Interactions"
+      ]
+    },
+    "governance": {
+      "title": "Component 2: Regional Governance",
+      "description": "Developing a regional Strategic Action Program (SAP) and facilitating joint management of surface and groundwater resources.",
+      "features": [
+        "Policy Development",
+        "Transboundary Framework",
+        "Governance Mechanisms",
+        "Joint Management Plans"
+      ]
+    },
+    "capacity": {
+      "title": "Component 3 & 4: Capacity Building",
+      "description": "Piloting groundwater adaptation solutions and building capacity through training, communication and knowledge management.",
+      "features": [
+        "Adaptation Solutions",
+        "Training Programs",
+        "Knowledge Sharing",
+        "Communication Strategy"
+      ]
+    }
+  },
+  "news": {
+    "label": "News & Events",
+    "title": "Latest",
+    "titleHighlight": "News & Events",
+    "subtitle": "Stay updated with the latest activities and events from the SMAS project.",
+    "readMore": "Read More",
+    "viewAll": "View All News",
+    "noNews": "No news available at the moment.",
+    "newsTab": "News",
+    "eventsTab": "Events",
+    "events": "Events"
+  },
+  "events": {
+    "title": "Events",
+    "upcoming": "Upcoming Events",
+    "past": "Past Events",
+    "viewDetails": "View Details",
+    "register": "Register"
+  },
+  "publications": {
+    "label": "Publications & Documents",
+    "title": "Publications & Documents",
+    "subtitle": "Access technical reports, training modules, and knowledge resources.",
+    "reports": {
+      "title": "Activity Reports",
+      "description": "Annual and progress reports on project activities"
+    },
+    "adaptation": {
+      "title": "Adaptation Business Plans",
+      "description": "Groundwater-based adaptation solutions and strategies"
+    },
+    "knowledge": {
+      "title": "SMAS Knowledge",
+      "description": "Scientific publications and technical documentation"
+    },
+    "training": {
+      "title": "Training Modules",
+      "description": "Capacity building resources and training materials"
+    },
+    "download": "Download",
+    "category": "Category",
+    "date": "Date",
+    "size": "Size"
+  },
+  "data": {
+    "label": "Data & Resources",
+    "title": "Explore SMAS",
+    "titleHighlight": "Data & Maps",
+    "subtitle": "Access interactive maps, key statistics, and technical reports from the Senegal-Mauritanian Aquifer System monitoring network.",
+    "viewMap": "View Map",
+    "downloadReport": "Download Report",
+    "statistics": "Key Statistics",
+    "statistics_title": "Key Statistics"
+  },
+  "work": {
+    "label": "Work with Us",
+    "title": "Work with Us",
+    "subtitle": "Opportunities to collaborate on sustainable water management.",
+    "tenders": {
+      "title": "Calls for Tenders",
+      "description": "Current procurement opportunities and calls for proposals.",
+      "deadline": "Deadline",
+      "status": "Status",
+      "open": "Open",
+      "closed": "Closed"
+    }
+  },
+  "water": {
+    "label": "Manage SMAS Water",
+    "title": "Manage SMAS Water",
+    "subtitle": "Water management activities by country in the Senegal-Mauritanian Aquifer System.",
+    "countries": {
+      "gambia": {
+        "name": "The Gambia",
+        "description": "Water resource management activities in The Gambia portion of the SMAS."
+      },
+      "guineaBissau": {
+        "name": "Guinea-Bissau",
+        "description": "Water resource management activities in Guinea-Bissau portion of the SMAS."
+      },
+      "mauritania": {
+        "name": "Mauritania",
+        "description": "Water resource management activities in Mauritania portion of the SMAS."
+      },
+      "senegal": {
+        "name": "Senegal",
+        "description": "Water resource management activities in Senegal portion of the SMAS."
+      }
+    },
+    "statistics": {
+      "title": "Key Statistics",
+      "aquiferDepth": "Aquifer Depth",
+      "annualRecharge": "Annual Recharge",
+      "abstraction": "Current Abstraction",
+      "population": "Population Served"
+    }
+  },
+  "partners": {
+    "label": "Our Partners",
+    "title": "Working Together for",
+    "titleHighlight": "Sustainable Water Management",
+    "subtitle": "The SMAS project is implemented through strong partnerships with regional and international organizations.",
+    "countries": "Beneficiary Countries",
+    "organizations": "Partner Organizations",
+    "oss": {
+      "name": "OSS",
+      "fullName": "Observatory of the Sahara and the Sahel",
+      "description": "The implementing agency coordinating the SMAS project."
+    },
+    "omvs": {
+      "name": "OMVS",
+      "fullName": "Organization for the Development of the Senegal River",
+      "description": "Supporting transboundary water management efforts."
+    },
+    "omvg": {
+      "name": "OMVG",
+      "fullName": "Organization for the Development of the Gambia River",
+      "description": "Supporting integrated water resources management."
+    },
+    "gef": {
+      "name": "GEF",
+      "fullName": "Global Environment Facility",
+      "description": "The primary funding partner supporting the SMAS project."
+    },
+    "unep": {
+      "name": "UNEP",
+      "fullName": "United Nations Environment Programme",
+      "description": "Providing technical guidance and international coordination."
+    }
+  },
+  "footer": {
+    "description": "Strengthening the Sustainable Management of the Senegal-Mauritanian Aquifer System",
+    "quickLinks": "Quick Links",
+    "contact": "Contact",
+    "followUs": "Follow Us",
+    "copyright": "© 2024 SMAS Project. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use"
+  },
+  "admin": {
+    "title": "Admin Dashboard",
+    "dashboard": "Dashboard",
+    "contents": "Contents",
+    "news": "News & Events",
+    "publications": "Publications",
+    "tenders": "Tenders",
+    "settings": "Settings",
+    "addContent": "Add Content",
+    "editContent": "Edit Content",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "confirmDelete": "Are you sure you want to delete this item?",
+    "back": "Back"
+  },
+  "common": {
+    "search": "Search",
+    "filter": "Filter",
+    "all": "All",
+    "none": "None",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Operation successful",
+    "published": "Published",
+    "draft": "Draft",
+    "archived": "Archived",
+    "learnMore": "Learn More"
+  },
+  "map": {
+    "title": "Interactive Map",
+    "subtitle": "Explore the Senegal-Mauritanian Aquifer System",
+    "layers": "Layers",
+    "points": "Points",
+    "about": "About",
+    "showLayers": "Show Layers",
+    "hideLayers": "Hide Layers",
+    "noLayers": "No layers available",
+    "noPoints": "No points available",
+    "zoomIn": "Zoom In",
+    "zoomOut": "Zoom Out",
+    "resetView": "Reset View",
+    "search": "Search location...",
+    "layerInfo": "Layer Information",
+    "pointInfo": "Point Information",
+    "visibility": "Visibility",
+    "addLayer": "Add Layer",
+    "editLayer": "Edit Layer",
+    "deleteLayer": "Delete Layer",
+    "layerName": "Layer Name",
+    "layerType": "Layer Type",
+    "color": "Color",
+    "opacity": "Opacity",
+    "description": "Description",
+    "source": "Source",
+    "attribution": "Attribution",
+    "defaultView": "Default View",
+    "countries": {
+      "gambia": "Gambia",
+      "guineaBissau": "Guinea-Bissau",
+      "mauritania": "Mauritania",
+      "senegal": "Senegal"
+    },
+    "categories": {
+      "monitoring": "Monitoring Stations",
+      "wells": "Water Wells",
+      "aquifer": "Aquifer Zones",
+      "rivers": "Rivers",
+      "cities": "Cities"
+    }
+  },
+  "pages": {
+    "about": {
+      "title": "About the Project",
+      "subtitle": "The Senegal-Mauritanian Aquifer System Project"
+    },
+    "team": {
+      "title": "Our Team",
+      "subtitle": "The people driving the SMAS project forward"
+    },
+    "history": {
+      "title": "Project History",
+      "subtitle": "Key milestones in the development of the SMAS project"
+    },
+    "partners": {
+      "title": "Our Partners",
+      "subtitle": "Working together for sustainable water management"
+    },
+    "component1": {
+      "introduction": {
+        "title": "Improving Understanding of the Aquifer System",
+        "content": "This component aims to improve the shared understanding of the Senegalo-Mauritanian aquifer system through detailed studies and harmonization of groundwater management tools. It includes the regional evaluation and diagnosis of the aquifer system to identify challenges and opportunities related to its sustainable management."
+      },
+      "activities": {
+        "title": "Key Activities",
+        "dataCollection": {
+          "title": "Data Collection & Analysis",
+          "description": "Gathering and analyzing hydrogeological data from across the four countries to build a comprehensive understanding of the aquifer system."
+        },
+        "monitoring": {
+          "title": "Monitoring Systems",
+          "description": "Establishing and maintaining monitoring networks to track groundwater levels, quality, and extraction rates in real-time."
+        },
+        "interactions": {
+          "title": "River-Aquifer Interactions",
+          "description": "Studying the complex relationships between surface water from the Senegal and Gambia rivers and the underlying aquifer system."
+        },
+        "mapping": {
+          "title": "Geological Mapping",
+          "description": "Creating detailed geological and hydrogeological maps to support resource assessment and management planning."
+        }
+      },
+      "objectives": {
+        "title": "Strategic Objectives",
+        "aquifer": "Comprehensive aquifer characterization and assessment",
+        "database": "Integrated regional groundwater database",
+        "assessment": "Transboundary water resource evaluation"
+      },
+      "features": {
+        "title": "Key Focus Areas"
+      }
+    },
+    "component2": {
+      "introduction": {
+        "title": "Regional Strategic Action Programme (RSAP)",
+        "content": "The purpose of this component is to develop and approve an RSAP for the sustainable management of SMAS water resources. The RSAP will include strategies and measures for integrated management of surface and groundwater resources, while taking into account the impacts of climate change."
+      },
+      "activities": {
+        "title": "Key Activities",
+        "policy": {
+          "title": "Policy Development",
+          "description": "Developing harmonized policies and regulations for groundwater management across all four countries."
+        },
+        "framework": {
+          "title": "Transboundary Framework",
+          "description": "Creating legal and institutional frameworks to support cooperative management of shared water resources."
+        },
+        "governance": {
+          "title": "Governance Mechanisms",
+          "description": "Establishing governance structures and coordination mechanisms for effective transboundary water management."
+        },
+        "planning": {
+          "title": "Joint Planning",
+          "description": "Developing joint management plans and strategic action programs for sustainable aquifer use."
+        }
+      },
+      "objectives": {
+        "title": "Strategic Objectives",
+        "sap": "Regional Strategic Action Program development",
+        "integration": "Surface and groundwater management integration",
+        "cooperation": "Cross-border institutional cooperation"
+      },
+      "features": {
+        "title": "Key Focus Areas"
+      }
+    },
+    "component3": {
+      "introduction": {
+        "title": "Groundwater-Based Adaptation Measures",
+        "content": "This component focuses on implementing small-scale pilot measures to demonstrate the effectiveness of improved water resource use. These measures will aim to increase water use efficiency in agriculture and expand water resource availability through adapted local interventions."
+      },
+      "activities": {
+        "title": "Key Activities",
+        "solutions": {
+          "title": "Adaptation Solutions",
+          "description": "Designing and implementing groundwater-based solutions to enhance climate resilience in vulnerable areas."
+        },
+        "pilots": {
+          "title": "Pilot Projects",
+          "description": "Launching demonstration projects to test and validate adaptation approaches in real-world conditions."
+        },
+        "resilience": {
+          "title": "Resilience Building",
+          "description": "Strengthening community and ecosystem resilience through targeted interventions and capacity support."
+        },
+        "mitigation": {
+          "title": "Risk Mitigation",
+          "description": "Identifying and addressing climate-related risks to water resources and dependent communities."
+        }
+      },
+      "objectives": {
+        "title": "Strategic Objectives",
+        "groundwater": "Sustainable groundwater utilization for adaptation",
+        "pilots": "Community-based pilot project implementation",
+        "adaptation": "Climate-smart water management practices"
+      },
+      "features": {
+        "title": "Key Focus Areas"
+      }
+    },
+    "component4": {
+      "introduction": {
+        "title": "Capacity Building, Communication and Knowledge Management",
+        "content": "This component aims to strengthen institutional and human capacities for SMAS management. It includes the development of a regional information and data exchange platform, training modules, and communication strategies to disseminate project results and increase its visibility."
+      },
+      "activities": {
+        "title": "Key Activities",
+        "training": {
+          "title": "Training Programs",
+          "description": "Developing and delivering specialized training for water professionals and decision-makers across the region."
+        },
+        "knowledge": {
+          "title": "Knowledge Sharing",
+          "description": "Creating platforms and mechanisms for sharing best practices, data, and lessons learned among stakeholders."
+        },
+        "communication": {
+          "title": "Communication Strategy",
+          "description": "Implementing communication strategies to raise awareness and promote sustainable water management practices."
+        },
+        "platform": {
+          "title": "Regional Platform",
+          "description": "Establishing a regional knowledge management platform for aquifer system information and collaboration."
+        }
+      },
+      "objectives": {
+        "title": "Strategic Objectives",
+        "capacity": "Enhanced technical and institutional capacity",
+        "network": "Regional knowledge sharing network",
+        "innovation": "Innovation and best practice adoption"
+      },
+      "features": {
+        "title": "Key Focus Areas"
+      }
+    },
+    "knowledge": {
+      "title": "Component 1: Aquifer Knowledge",
+      "subtitle": "Improving understanding of the Senegal-Mauritanian Aquifer System"
+    },
+    "governance": {
+      "title": "Component 2: Regional Governance",
+      "subtitle": "Developing the regional Strategic Action Program"
+    },
+    "capacity": {
+      "title": "Components 3 & 4: Adaptation & Capacity",
+      "subtitle": "Climate adaptation solutions and capacity building"
+    },
+    "maps": {
+      "title": "Interactive Maps",
+      "subtitle": "Explore aquifer data through interactive cartographic layers"
+    },
+    "reports": {
+      "title": "Technical Reports",
+      "subtitle": "Access documentation and research outputs from the SMAS project"
+    }
+  },
+  "workWithUs": {
+    "tenders": "Calls for Tenders",
+    "subtitle": "Current procurement opportunities and calls for proposals"
+  },
+  "impact": {
+    "title": "Expected Impact and Beneficiaries",
+    "subtitle": "The SMAS project (2024-2027) targets concrete results for populations and ecosystems across the four countries",
+    "indicators": {
+      "title": "Key Indicators",
+      "protectedAreas": "Terrestrial areas protected under improved management: 16,000 hectares",
+      "restoredLand": "Area of land restored: 4,636.7 hectares",
+      "improvedLandscapes": "Area of landscapes under improved practices: 61,213 hectares",
+      "aquaticEcosystems": "Shared aquatic ecosystems under improved cooperative management: 1",
+      "directBeneficiaries": "Direct beneficiaries: 163,241 (Men: 79,988, Women: 83,253)"
+    },
+    "outcomes": {
+      "title": "Impact",
+      "waterSecurity": "Increased water security in freshwater ecosystems.",
+      "regionalCooperation": "Strengthened regional and national cooperation on shared water resources.",
+      "climateResilience": "Improved climate change resilience for populations dependent on SMAS."
+    },
+    "beneficiaries": {
+      "title": "Beneficiaries",
+      "description": "The project aims to directly benefit populations in pilot areas through improved water management practices, capacity building and increased cooperation between participating countries."
+    },
+    "gender": {
+      "title": "Gender Considerations",
+      "description": "The project pays particular attention to the gender dimension by integrating specific actions to promote gender equality and women's empowerment. Women, often the most affected by water scarcity and the impacts of climate change, will benefit from training and capacity building programmes to play an active role in water resource management."
+    }
+  }
+}

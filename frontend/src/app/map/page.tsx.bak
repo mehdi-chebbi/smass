@@ -1,0 +1,810 @@
+"use client";
+
+import { useState, useEffect, useCallback, useRef, useMemo } from "react";
+import dynamic from "next/dynamic";
+import {
+  Menu,
+  X,
+  Layers as LayersIcon,
+  MapPin,
+  Eye,
+  EyeOff,
+  ChevronDown,
+  Search,
+  Info,
+  Maximize2,
+  Minimize2,
+  Home,
+  ZoomIn,
+  ZoomOut,
+  Box,
+  Circle,
+  Route,
+  Loader2,
+  Map as MapIcon,
+  Satellite,
+  Mountain,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
+import { useI18n } from "@/i18n/context";
+import Navbar from "@/components/sections/Navbar";
+
+const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:3001";
+
+const MapContainer = dynamic(
+  () => import("react-leaflet").then((m) => m.MapContainer),
+  { ssr: false },
+);
+const TileLayer = dynamic(
+  () => import("react-leaflet").then((m) => m.TileLayer),
+  { ssr: false },
+);
+const GeoJSON = dynamic(() => import("react-leaflet").then((m) => m.GeoJSON), {
+  ssr: false,
+});
+const CircleMarker = dynamic(
+  () => import("react-leaflet").then((m) => m.CircleMarker),
+  { ssr: false },
+);
+const Popup = dynamic(() => import("react-leaflet").then((m) => m.Popup), {
+  ssr: false,
+});
+const ScaleControl = dynamic(
+  () => import("react-leaflet").then((m) => m.ScaleControl),
+  { ssr: false },
+);
+
+const BASEMAPS: Record<
+  string,
+  {
+    url: string;
+    attribution: string;
+    maxZoom?: number;
+    labels?: string;
+    label: string;
+    labelFr: string;
+    emoji: string;
+  }
+> = {
+  satellite: {
+    url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    attribution: "Esri",
+    maxZoom: 19,
+    label: "Satellite",
+    labelFr: "Satellite",
+    emoji: "🌍",
+  },
+  hybrid: {
+    url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    attribution: "Esri, DigitalGlobe, GeoEye",
+    maxZoom: 19,
+    labels:
+      "https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png",
+    label: "Satellite + Labels",
+    labelFr: "Satellite + Étiquettes",
+    emoji: "🛰️",
+  },
+
+  streets: {
+    url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    attribution:
+      '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    label: "Streets",
+    labelFr: "Rues",
+    emoji: "🗺️",
+  },
+  terrain: {
+    url: "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
+    attribution: "OpenTopoMap",
+    maxZoom: 17,
+    label: "Terrain",
+    labelFr: "Terrain",
+    emoji: "⛰️",
+  },
+};
+
+// MapController must be used inside MapContainer
+function MapController({
+  center,
+  zoom,
+  mapRef,
+}: {
+  center: [number, number];
+  zoom: number;
+  mapRef: React.MutableRefObject<any>;
+}) {
+  // We use a workaround for dynamic import of useMap
+  const [map, setMap] = useState<any>(null);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    import("react-leaflet").then(({ useMap: _useMap }) => {
+      // can't use hooks in effects, so we use mapRef directly via MapContainerRef
+    });
+  }, []);
+
+  return null;
+}
+
+// Inner component that can use useMap hook
+const MapInner = dynamic(
+  () =>
+    import("react-leaflet").then((m) => {
+      function Inner({ mapRef }: { mapRef: React.MutableRefObject<any> }) {
+        const map = m.useMap();
+        mapRef.current = map;
+        return null;
+      }
+      return { default: Inner };
+    }),
+  { ssr: false },
+);
+
+function GeomIcon({ type }: { type: string }) {
+  const t = (type || "").toUpperCase();
+  if (t.includes("POINT")) return <MapPin className="h-3.5 w-3.5" />;
+  if (t.includes("LINE")) return <Route className="h-3.5 w-3.5" />;
+  if (t.includes("POLYGON")) return <Box className="h-3.5 w-3.5" />;
+  return <Circle className="h-3.5 w-3.5" />;
+}
+
+function LayerItem({
+  layer,
+  visible,
+  onToggle,
+  onSelect,
+  selected,
+}: {
+  layer: any;
+  visible: boolean;
+  onToggle: () => void;
+  onSelect: () => void;
+  selected: boolean;
+}) {
+  const { locale } = useI18n();
+  const name = locale === "fr" && layer.nameFr ? layer.nameFr : layer.name;
+
+  // Build category legend entries
+  const categoryLegend = useMemo(() => {
+    if (!layer.categorize || !layer.categorizeField || !layer.geoData)
+      return [];
+    const PALETTE = [
+      "#e74c3c",
+      "#3498db",
+      "#2ecc71",
+      "#f39c12",
+      "#9b59b6",
+      "#1abc9c",
+      "#e67e22",
+      "#34495e",
+      "#e91e63",
+      "#00bcd4",
+      "#8bc34a",
+      "#ff5722",
+      "#607d8b",
+      "#795548",
+      "#ffc107",
+    ];
+    try {
+      const geo =
+        typeof layer.geoData === "string"
+          ? JSON.parse(layer.geoData)
+          : layer.geoData;
+      const unique: string[] = [];
+      (geo?.features || []).forEach((f: any) => {
+        const v = String(f?.properties?.[layer.categorizeField] ?? "N/A");
+        if (!unique.includes(v)) unique.push(v);
+      });
+      return unique.map((v, i) => ({
+        value: v,
+        color: PALETTE[i % PALETTE.length],
+      }));
+    } catch {
+      return [];
+    }
+  }, [layer]);
+
+  return (
+    <div
+      className={`rounded-xl border transition-all duration-200 ${selected ? "border-blue-300 bg-blue-50" : "border-slate-200 bg-white hover:bg-slate-50"}`}
+    >
+      <div
+        className="flex items-center gap-3 p-3 cursor-pointer"
+        onClick={onSelect}
+      >
+        <Checkbox
+          checked={visible}
+          onCheckedChange={onToggle}
+          onClick={(e) => e.stopPropagation()}
+          className="data-[state=checked]:bg-blue-600 data-[state=checked]:border-blue-600"
+        />
+        <div
+          className="w-7 h-7 rounded-lg flex items-center justify-center text-white shadow-sm"
+          style={{ backgroundColor: layer.color || "#3388ff" }}
+        >
+          <GeomIcon type={layer.layerType || "VECTOR"} />
+        </div>
+        <span className="text-sm font-medium text-slate-800 flex-1 truncate">
+          {name}
+        </span>
+        <ChevronDown
+          className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${selected ? "rotate-180" : ""}`}
+        />
+      </div>
+      {/* Categorize legend shown when layer is selected */}
+      {selected && categoryLegend.length > 0 && (
+        <div className="px-3 pb-3 pt-1 border-t border-slate-100">
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
+            Légende — {layer.categorizeField}
+          </p>
+          <div className="flex flex-col gap-1">
+            {categoryLegend.map(({ value, color }) => (
+              <div key={value} className="flex items-center gap-2">
+                <span
+                  className="w-3.5 h-3.5 rounded-sm flex-shrink-0 border border-white/50 shadow-sm"
+                  style={{ backgroundColor: color }}
+                />
+                <span className="text-xs text-slate-600 truncate">{value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default function MapPage() {
+  const { locale } = useI18n();
+  const [layers, setLayers] = useState<any[]>([]);
+  const [points, setPoints] = useState<any[]>([]);
+  const [visible, setVisible] = useState<Set<string>>(new Set());
+  const [selected, setSelected] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [fullscreen, setFullscreen] = useState(false);
+  const [basemap, setBasemap] = useState<string>("satellite");
+  const [basemapOpen, setBasemapOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const mapRef = useRef<any>(null);
+
+  const DEFAULT_CENTER: [number, number] = [19.5, -14.5];
+  const DEFAULT_ZOOM = 5.5;
+
+  useEffect(() => {
+    async function load() {
+      try {
+        const [layerRes, pointRes] = await Promise.all([
+          fetch(`${BACKEND}/api/map/layers`),
+          fetch(`${BACKEND}/api/map/points`),
+        ]);
+        if (!layerRes.ok) throw new Error(`Layers: ${layerRes.status}`);
+        const layerData = await layerRes.json();
+        const pointData = pointRes.ok ? await pointRes.json() : { points: [] };
+
+        const fetchedLayers = layerData.layers || [];
+        const fetchedPoints = pointData.points || [];
+
+        setLayers(fetchedLayers);
+        setPoints(fetchedPoints);
+
+        const defaultVisible = new Set<string>(
+          fetchedLayers
+            .filter((l: any) => l.isVisible || l.isDefault)
+            .map((l: any) => l.id),
+        );
+        setVisible(defaultVisible);
+      } catch (e: any) {
+        setError(e.message || "Failed to load map data");
+      } finally {
+        setLoading(false);
+      }
+    }
+    load();
+  }, []);
+
+  const toggleLayer = useCallback((id: string) => {
+    setVisible((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  }, []);
+
+  const filtered = layers.filter(
+    (l) =>
+      !search ||
+      (l.name + (l.nameFr || "")).toLowerCase().includes(search.toLowerCase()),
+  );
+
+  const cfg = BASEMAPS[basemap];
+
+  const parseGeoData = (layer: any) => {
+    if (!layer.geoData) return null;
+    try {
+      return typeof layer.geoData === "string"
+        ? JSON.parse(layer.geoData)
+        : layer.geoData;
+    } catch {
+      return null;
+    }
+  };
+
+  // Zoom handlers using leaflet map ref
+  const handleZoomIn = useCallback(() => {
+    if (mapRef.current) mapRef.current.zoomIn();
+  }, []);
+  const handleZoomOut = useCallback(() => {
+    if (mapRef.current) mapRef.current.zoomOut();
+  }, []);
+  const handleHome = useCallback(() => {
+    if (mapRef.current) mapRef.current.setView(DEFAULT_CENTER, DEFAULT_ZOOM);
+  }, []);
+
+  return (
+    <div
+      className={`flex flex-col ${fullscreen ? "fixed inset-0 z-50" : "min-h-screen"}`}
+    >
+      {!fullscreen && <Navbar />}
+
+      <div
+        className={`relative flex-1 flex ${!fullscreen ? "pt-16" : ""}`}
+        style={{ height: fullscreen ? "100vh" : "calc(100vh - 64px)" }}
+      >
+        {/* ── MAP ──────────────────────────────────────────────────────── */}
+        <div className="absolute inset-0">
+          {loading ? (
+            <div className="flex flex-col items-center justify-center h-full bg-slate-100">
+              <Loader2 className="w-12 h-12 animate-spin text-blue-600 mb-4" />
+              <p className="text-slate-500 font-medium">
+                Chargement de la carte…
+              </p>
+            </div>
+          ) : error ? (
+            <div className="flex flex-col items-center justify-center h-full bg-slate-100 text-center p-8">
+              <p className="text-red-500 font-medium mb-2">
+                Erreur de chargement
+              </p>
+              <p className="text-slate-400 text-sm">{error}</p>
+              <p className="text-slate-400 text-xs mt-2">
+                Vérifiez que le backend tourne sur {BACKEND}
+              </p>
+            </div>
+          ) : (
+            <MapContainer
+              center={DEFAULT_CENTER}
+              zoom={DEFAULT_ZOOM}
+              className="h-full w-full z-0"
+              zoomControl={false}
+            >
+              <MapInner mapRef={mapRef} />
+              <ScaleControl position="bottomright" imperial={false} />
+
+              <TileLayer
+                url={cfg.url}
+                attribution={cfg.attribution}
+                maxZoom={cfg.maxZoom}
+              />
+              {cfg.labels && (
+                <TileLayer url={cfg.labels} attribution="" zIndex={1000} />
+              )}
+
+              {/* GeoJSON layers — points, popups, labels, categorize */}
+              {layers.map((layer) => {
+                if (!visible.has(layer.id)) return null;
+                const geo = parseGeoData(layer);
+                if (!geo) return null;
+                const fillC = layer.fillColor || layer.color || "#3388ff";
+                const borderC = layer.borderColor || layer.color || "#3388ff";
+
+                // Build category color map if categorize is enabled
+                let categoryColors: Record<string, string> = {};
+                if (
+                  layer.categorize &&
+                  layer.categorizeField &&
+                  geo?.features
+                ) {
+                  const PALETTE = [
+                    "#e74c3c",
+                    "#3498db",
+                    "#2ecc71",
+                    "#f39c12",
+                    "#9b59b6",
+                    "#1abc9c",
+                    "#e67e22",
+                    "#34495e",
+                    "#e91e63",
+                    "#00bcd4",
+                    "#8bc34a",
+                    "#ff5722",
+                    "#607d8b",
+                    "#795548",
+                    "#ffc107",
+                  ];
+                  const uniqueVals: string[] = [];
+                  geo.features.forEach((f: any) => {
+                    const v = String(
+                      f?.properties?.[layer.categorizeField] ?? "N/A",
+                    );
+                    if (!uniqueVals.includes(v)) uniqueVals.push(v);
+                  });
+                  uniqueVals.forEach((v, i) => {
+                    categoryColors[v] = PALETTE[i % PALETTE.length];
+                  });
+                }
+
+                // onEachFeature: popup on click + optional label tooltip
+                const onEachFeature = (feature: any, leafletLayer: any) => {
+                  const props = feature?.properties || {};
+
+                  // Popup with all properties
+                  const propRows = Object.entries(props)
+                    .filter(([, v]) => v != null && v !== "")
+                    .map(
+                      ([k, v]) =>
+                        `<tr><td style="padding:2px 6px 2px 0;color:#64748b;font-weight:600;font-size:11px">${k}</td><td style="padding:2px 0;font-size:12px">${v}</td></tr>`,
+                    )
+                    .join("");
+                  if (propRows) {
+                    leafletLayer.bindPopup(
+                      `<div style="max-width:260px;font-family:sans-serif">
+                        ${
+                          layer.labelField && props[layer.labelField]
+                            ? `<div style="font-weight:700;font-size:13px;margin-bottom:6px;color:#1e293b">${props[layer.labelField]}</div>`
+                            : ""
+                        }
+                        <table style="border-collapse:collapse;width:100%">${propRows}</table>
+                      </div>`,
+                      { maxWidth: 280 },
+                    );
+                  }
+
+                  // Tooltip label
+                  if (
+                    layer.showLabels &&
+                    layer.labelField &&
+                    props[layer.labelField] != null
+                  ) {
+                    leafletLayer.bindTooltip(String(props[layer.labelField]), {
+                      permanent: true,
+                      direction: "center",
+                      className: "map-label-tooltip",
+                      offset: [0, 0],
+                    });
+                  }
+                };
+
+                // Style function — supports categorize
+                const styleFn = (feature: any) => {
+                  if (layer.categorize && layer.categorizeField) {
+                    const val = String(
+                      feature?.properties?.[layer.categorizeField] ?? "N/A",
+                    );
+                    const catColor = categoryColors[val] || fillC;
+                    return {
+                      color: catColor,
+                      fillColor: catColor,
+                      weight: layer.weight ?? 2,
+                      opacity:
+                        (layer.borderOpacity ?? 1) * (layer.opacity ?? 0.8),
+                      fillOpacity: layer.fillOpacity ?? 0.5,
+                    };
+                  }
+                  return {
+                    color: borderC,
+                    fillColor: fillC,
+                    weight: layer.weight ?? 2,
+                    opacity:
+                      (layer.borderOpacity ?? 1) * (layer.opacity ?? 0.8),
+                    fillOpacity: layer.fillOpacity ?? 0.35,
+                  };
+                };
+
+                // pointToLayer: render Point features as CircleMarkers
+                const pointToLayer = (feature: any, latlng: any) => {
+                  const L = (window as any).L;
+                  const catColor =
+                    layer.categorize && layer.categorizeField
+                      ? categoryColors[
+                          String(
+                            feature?.properties?.[layer.categorizeField] ??
+                              "N/A",
+                          )
+                        ] || fillC
+                      : fillC;
+                  return L.circleMarker(latlng, {
+                    radius: 7,
+                    color: borderC,
+                    fillColor: catColor,
+                    weight: layer.weight ?? 2,
+                    opacity: layer.borderOpacity ?? 1,
+                    fillOpacity: layer.fillOpacity ?? 0.85,
+                  });
+                };
+
+                return (
+                  <GeoJSON
+                    key={`${layer.id}-${layer.updatedAt}`}
+                    data={geo}
+                    style={styleFn}
+                    onEachFeature={onEachFeature}
+                    pointToLayer={pointToLayer}
+                  />
+                );
+              })}
+
+              {points
+                .filter((p) => p.isActive)
+                .map((pt) => (
+                  <CircleMarker
+                    key={pt.id}
+                    center={[pt.latitude, pt.longitude]}
+                    radius={pt.size || 8}
+                    pathOptions={{
+                      color: pt.color || "#1e40af",
+                      fillColor: pt.color || "#1e40af",
+                      fillOpacity: 0.9,
+                      weight: 2,
+                    }}
+                  >
+                    <Popup>
+                      <div className="text-sm font-semibold text-slate-800">
+                        {locale === "fr" && pt.nameFr ? pt.nameFr : pt.name}
+                      </div>
+                      {pt.category && (
+                        <div className="text-xs text-slate-400 mt-0.5">
+                          {pt.category}
+                        </div>
+                      )}
+                      {(pt.popupContent || pt.description) && (
+                        <div className="text-xs mt-1.5 text-slate-600 leading-relaxed">
+                          {locale === "fr" && pt.popupContentFr
+                            ? pt.popupContentFr
+                            : pt.popupContent || pt.description}
+                        </div>
+                      )}
+                    </Popup>
+                  </CircleMarker>
+                ))}
+            </MapContainer>
+          )}
+
+          {/* ── Map Controls — bottom-right, above scale ──────────────── */}
+          {!loading && !error && (
+            <div className="absolute bottom-16 right-4 z-[1000] flex flex-col gap-1.5">
+              {/* Basemap Selector — Premium Design */}
+              <div className="relative">
+                <button
+                  onClick={() => setBasemapOpen((o) => !o)}
+                  className="w-10 h-10 bg-white rounded-xl shadow-lg border border-slate-200 flex items-center justify-center hover:bg-slate-50 transition-all duration-200 hover:shadow-xl"
+                  title="Fond de carte"
+                >
+                  <span className="text-lg">{BASEMAPS[basemap].emoji}</span>
+                </button>
+
+                {basemapOpen && (
+                  <>
+                    {/* Backdrop to close */}
+                    <div
+                      className="fixed inset-0 z-[999]"
+                      onClick={() => setBasemapOpen(false)}
+                    />
+                    <div className="absolute bottom-full mb-2 right-0 z-[1001] w-56 bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden">
+                      {/* Header */}
+                      <div className="px-4 py-3 bg-gradient-to-r from-blue-700 to-blue-900 text-white">
+                        <p className="text-xs font-bold uppercase tracking-widest">
+                          Fond de carte
+                        </p>
+                      </div>
+                      {/* Options */}
+                      <div className="p-2">
+                        {Object.entries(BASEMAPS).map(([id, bm]) => (
+                          <button
+                            key={id}
+                            onClick={() => {
+                              setBasemap(id);
+                              setBasemapOpen(false);
+                            }}
+                            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-150 ${
+                              basemap === id
+                                ? "bg-blue-50 text-blue-700 font-semibold"
+                                : "text-slate-600 hover:bg-slate-50"
+                            }`}
+                          >
+                            <span className="text-xl w-7 text-center">
+                              {bm.emoji}
+                            </span>
+                            <span>
+                              {locale === "fr" ? bm.labelFr : bm.label}
+                            </span>
+                            {basemap === id && (
+                              <span className="ml-auto w-2 h-2 bg-blue-600 rounded-full" />
+                            )}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+
+              {/* Zoom + Home controls */}
+              <div className="flex flex-col gap-1 bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
+                <button
+                  onClick={handleZoomIn}
+                  className="w-10 h-10 flex items-center justify-center text-slate-700 hover:bg-slate-50 hover:text-blue-600 transition-colors"
+                  title="Zoom +"
+                >
+                  <ZoomIn className="h-4 w-4" />
+                </button>
+                <div className="h-px bg-slate-100 mx-2" />
+                <button
+                  onClick={handleZoomOut}
+                  className="w-10 h-10 flex items-center justify-center text-slate-700 hover:bg-slate-50 hover:text-blue-600 transition-colors"
+                  title="Zoom -"
+                >
+                  <ZoomOut className="h-4 w-4" />
+                </button>
+                <div className="h-px bg-slate-100 mx-2" />
+                <button
+                  onClick={handleHome}
+                  className="w-10 h-10 flex items-center justify-center text-slate-700 hover:bg-slate-50 hover:text-blue-600 transition-colors"
+                  title="Réinitialiser"
+                >
+                  <Home className="h-4 w-4" />
+                </button>
+              </div>
+
+              {/* Fullscreen */}
+              <button
+                onClick={() => setFullscreen((f) => !f)}
+                className="w-10 h-10 bg-white rounded-xl shadow-lg border border-slate-200 flex items-center justify-center text-slate-700 hover:bg-slate-50 hover:text-blue-600 transition-all duration-200"
+                title={fullscreen ? "Quitter plein écran" : "Plein écran"}
+              >
+                {fullscreen ? (
+                  <Minimize2 className="h-4 w-4" />
+                ) : (
+                  <Maximize2 className="h-4 w-4" />
+                )}
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* ── SIDEBAR (left) ───────────────────────────────────────────── */}
+        <div
+          className={`relative z-[1000] flex flex-col bg-white shadow-2xl border-r border-slate-200 transition-all duration-300 ${sidebarOpen ? "w-80" : "w-0 overflow-hidden"}`}
+        >
+          {sidebarOpen && (
+            <div className="flex flex-col h-full">
+              {/* Header */}
+              <div className="flex items-center justify-between p-4 border-b bg-gradient-to-r from-blue-700 to-blue-900">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center">
+                    <LayersIcon className="h-4 w-4 text-white" />
+                  </div>
+                  <div>
+                    <h2 className="text-white font-bold text-sm">
+                      Couches cartographiques
+                    </h2>
+                    <p className="text-blue-200 text-xs">
+                      Système Aquifère Sénégalo-Mauritanien
+                    </p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setSidebarOpen(false)}
+                  className="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
+
+              {/* Search */}
+              <div className="p-3 border-b bg-slate-50">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400" />
+                  <Input
+                    placeholder="Rechercher une couche…"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    className="pl-8 bg-white h-8 text-sm border-slate-200"
+                  />
+                </div>
+                <div className="flex items-center justify-between mt-2 text-xs text-slate-500 px-1">
+                  <span className="font-medium">
+                    {visible.size}/{layers.length} couche(s)
+                  </span>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() =>
+                        setVisible(new Set(layers.map((l) => l.id)))
+                      }
+                      className="text-blue-600 hover:text-blue-700 flex items-center gap-1 font-medium"
+                    >
+                      <Eye className="w-3 h-3" />
+                      Tout afficher
+                    </button>
+                    <button
+                      onClick={() => setVisible(new Set())}
+                      className="text-slate-400 hover:text-slate-600 flex items-center gap-1"
+                    >
+                      <EyeOff className="w-3 h-3" />
+                      Masquer
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <ScrollArea className="flex-1">
+                <div className="p-3 space-y-2">
+                  {loading && (
+                    <div className="text-center py-8">
+                      <Loader2 className="w-6 h-6 animate-spin text-blue-600 mx-auto" />
+                    </div>
+                  )}
+                  {!loading && filtered.length === 0 && (
+                    <div className="text-center py-10 text-slate-400">
+                      <LayersIcon className="w-10 h-10 mx-auto mb-3 opacity-20" />
+                      <p className="text-sm font-medium">
+                        Aucune couche disponible
+                      </p>
+                      <p className="text-xs mt-1 text-slate-300">
+                        Ajoutez des couches via le panneau admin
+                      </p>
+                    </div>
+                  )}
+                  {filtered.map((layer) => (
+                    <LayerItem
+                      key={layer.id}
+                      layer={layer}
+                      visible={visible.has(layer.id)}
+                      onToggle={() => toggleLayer(layer.id)}
+                      onSelect={() =>
+                        setSelected((s) => (s === layer.id ? null : layer.id))
+                      }
+                      selected={selected === layer.id}
+                    />
+                  ))}
+                </div>
+              </ScrollArea>
+
+              {/* Footer info */}
+              <div className="p-3 border-t bg-gradient-to-r from-blue-50 to-slate-50">
+                <div className="flex items-start gap-2">
+                  <Info className="w-3.5 h-3.5 text-blue-600 mt-0.5 shrink-0" />
+                  <p className="text-xs text-blue-700 leading-relaxed">
+                    Aquifère Sénégalo-Mauritanien — 350 000 km², 15M+ personnes,
+                    4 pays
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Toggle sidebar button */}
+        {!sidebarOpen && (
+          <button
+            onClick={() => setSidebarOpen(true)}
+            className="absolute top-[46px] left-4 z-[1000] flex items-center gap-2 bg-white text-slate-700 shadow-xl rounded-xl px-4 py-2.5 hover:bg-slate-50 transition-colors font-medium text-sm border border-slate-200"
+          >
+            <LayersIcon className="h-4 w-4 text-blue-600" />
+            Afficher les couches
+            {visible.size > 0 && (
+              <span className="ml-1 w-5 h-5 bg-blue-600 text-white text-xs rounded-full flex items-center justify-center font-bold">
+                {visible.size}
+              </span>
+            )}
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}

@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: smas-config
+  namespace: smas
+data:
+  # ── General ──
+  NODE_ENV: "production"
+
+  # ── Backend ──
+  BACKEND_PORT: "3001"
+  BACKEND_URL: "http://smas-backend:3001"
+  FRONTEND_URL: "http://smas-frontend:3000"
+  ALLOWED_ORIGINS: "http://smas-frontend:3000,http://smas-frontend,http://localhost:3000"
+  UPLOAD_DIR: "/app/uploads"
+  MAX_UPLOAD_MB: "50"
+  ADMIN_EMAIL: "admin@smas.oss"
+  ADMIN_PASSWORD: "admin123"
+
+  # ── Frontend ──
+  FRONTEND_PORT: "3000"
+  NEXT_PUBLIC_BACKEND_PORT: "3001"
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: smas-secrets
+  namespace: smas
+type: Opaque
+stringData:
+  # PostgreSQL connection — adjust host/user/db for your cluster
+  DATABASE_URL: "postgresql://smas:smas123@smas-postgres:5432/smas?schema=public"
+  # JWT signing key — CHANGE THIS IN PRODUCTION
+  JWT_SECRET: "smas-prod-jwt-secret-change-me-2025"
+  JWT_EXPIRES_IN: "7d"

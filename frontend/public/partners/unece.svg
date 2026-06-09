@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="80" viewBox="0 0 200 80">
+  <rect width="200" height="80" fill="white"/>
+  <rect x="2" y="2" width="196" height="76" rx="6" fill="none" stroke="#009EDB" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="100" y="55" font-size="22" font-weight="bold" fill="#009EDB" text-anchor="middle" font-family="Arial">UNECE</text>
+</svg>
