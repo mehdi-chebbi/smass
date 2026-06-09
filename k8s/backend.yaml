@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: smas-backend:latest
+          image: mehdino123/back-smas:latest-main1
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3001
